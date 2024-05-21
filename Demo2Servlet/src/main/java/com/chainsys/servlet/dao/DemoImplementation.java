@@ -6,7 +6,6 @@ import com.chainsys.servlet.model.Demo;
 import com.chainsys.util.ConnectionUtil;
 public class DemoImplementation implements DemoDAO
 {
-	@SuppressWarnings("unused")
 	public void saveDetails(Demo demo) throws ClassNotFoundException, SQLException 
 	{
 		Connection connection=ConnectionUtil.getConnection();
