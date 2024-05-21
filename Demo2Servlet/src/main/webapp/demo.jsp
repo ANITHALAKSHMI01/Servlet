@@ -9,10 +9,8 @@
 <body>
 	<form action="Servlet1" method="post">
 		 Name          : <input type="text" name="name"><br>
-		 Date of Birth : <input type="date" name="date"><br>
-		 Phone Number  : <input type="tel" name="phoneNo"><br>
+		 Phone Number  : <input type="tel" name="phoneNo" maxlength=10><br>
 		 Email Id      : <input type="email" name="emailId"><br>
-		 Password      : <input type="password" name="password">
 		 <input type="submit" name="submit">
 	</form>
 </body>
