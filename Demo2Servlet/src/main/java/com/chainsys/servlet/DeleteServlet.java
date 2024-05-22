@@ -15,6 +15,7 @@ public class DeleteServlet extends HttpServlet
 {
 	public static Demo demo=new Demo();
 	public static List list;
+	static Servlet1 servlet=new Servlet1();
 	public static DemoImplementation demoImpl=new DemoImplementation();
 	private static final long serialVersionUID = 1L;
     public DeleteServlet()
@@ -36,27 +37,11 @@ public class DeleteServlet extends HttpServlet
 		{
 			e.printStackTrace();
 		}
-	}
-	protected void displayDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		try 
-		{
-			list=demoImpl.retriveDetails();
-			System.out.println(list);
-			System.out.println("Displayed successfully..");
-		} 
-		catch (ClassNotFoundException | SQLException e)
-		{
-			e.printStackTrace();
-		}
-		request.setAttribute("list", list);
-		 RequestDispatcher requestDispatcher=request.getRequestDispatcher("demotable.jsp");
-		 requestDispatcher.forward(request, response);
+		servlet.displayDetails(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		doGet(request, response);
-		displayDetails(request,response);
 	}
 
 }

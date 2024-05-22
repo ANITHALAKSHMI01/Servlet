@@ -13,6 +13,16 @@ div
  justify-content:center;
  width:fit-content;
  padding:20px;
+ position:relative;
+ left:450px;
+ top:150px;
+}
+.but
+{
+   padding:5px;
+   width:100px;
+   position:relative;
+   left:90px; 
 }
 </style>
 </head>
@@ -23,7 +33,7 @@ div
 		 Phone Number  : <input type="tel" name="phoneNo" maxlength=10><br><br>
 		 Email Id      : <input type="email" name="emailId"><br><br>
 		 Password      : <input type="password" name="password" maxlength=6><br><br>
-		 <input type="submit" name="submit">
+		 <input class="but" type="submit" name="submit">
 	</form>
 	</div>
 </body>
