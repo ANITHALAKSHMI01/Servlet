@@ -1,9 +1,11 @@
 package com.chainsys.servlet.model;
 public class Demo
 {
+	int id;
 	String name;
 	String email;
 	long phoneNo;
+	String password;
 	public Demo()
 	{
 		
@@ -13,6 +15,14 @@ public class Demo
 		this.name=name;
 		this.email=email;
 		this.phoneNo=phoneNo;
+	}
+	public int getId() 
+	{
+		return id;
+	}
+	public void setId(int id) 
+	{
+		this.id = id;
 	}
 	public String getName() 
 	{
@@ -38,9 +48,18 @@ public class Demo
 	{
 		this.phoneNo = phoneNo;
 	}
-	@Override
-	public String toString() 
+	public String getPassword() 
 	{
-		return "Demo [name=" + name + ", email=" + email + ", phoneNo=" + phoneNo + "]";
+		return password;
+	}
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
+	@Override
+	public String toString()
+	{
+		return "Demo [id=" + id + ", name=" + name + ", email=" + email + ", phoneNo=" + phoneNo + ", password="
+				+ password + "]";
 	}
 }
