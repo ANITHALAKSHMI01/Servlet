@@ -20,7 +20,7 @@ public class DemoImplementation implements DemoDAO
 		prepareStatement.setString(2, demo.getEmail());
 		prepareStatement.setLong(3, demo.getPhoneNo());
 		prepareStatement.setString(4, demo.getPassword());
-		int row=prepareStatement.executeUpdate();
+		prepareStatement.executeUpdate();
 		connection.close();
 	}
 	@Override
@@ -53,10 +53,13 @@ public class DemoImplementation implements DemoDAO
 	public void updateDetails(Demo demo) throws ClassNotFoundException, SQLException 
 	{
 		Connection connection=ConnectionUtil.getConnection();
-		String update="update demo set password=? where id=? ";
+		String update="update demo set name=?,phone_no=?,email=?,password=? where id=? ";
 		PreparedStatement prepareStatement=connection.prepareStatement(update);
-		prepareStatement.setString(1, demo.getPassword());
-		prepareStatement.setInt(2, demo.getId());
+		prepareStatement.setString(1,demo.getName());
+		prepareStatement.setLong(2,demo.getPhoneNo());
+		prepareStatement.setString(3, demo.getEmail());
+		prepareStatement.setString(4, demo.getPassword());
+		prepareStatement.setInt(5, demo.getId());
 		prepareStatement.executeUpdate();
 		connection.close();
 	}
@@ -69,6 +72,32 @@ public class DemoImplementation implements DemoDAO
 		prepareStatement.setInt(1, demo.getId());
 		prepareStatement.executeUpdate();	
 		connection.close();
+	}
+	@Override
+	public List<Demo> search(Demo demo) throws ClassNotFoundException, SQLException 
+	{
+		ArrayList<Demo> list=new ArrayList<>();
+		Connection connection=ConnectionUtil.getConnection();
+		String search="select id,name,email,phone_no from demo where name=?";
+		PreparedStatement prepareStatement=connection.prepareStatement(search);
+		prepareStatement.setString(1,demo.getName());
+		ResultSet resultSet=prepareStatement.executeQuery();
+		while(resultSet.next())
+		{
+			String id=resultSet.getString(1);
+			String name=resultSet.getString(2);
+			String email=resultSet.getString(3);
+			String phoneNo=resultSet.getString(4);
+			int id1=Integer.parseInt(id);
+			long phoneNumber=Long.parseLong(phoneNo);
+			demo.setId(id1);
+			demo.setName(name);
+			demo.setEmail(email);
+			demo.setPhoneNo(phoneNumber);
+			Demo demo1=new Demo(id1,name,email,phoneNumber);
+			list.add(demo1);
+		}
+		return list;
 	}
 
 }

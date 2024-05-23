@@ -26,11 +26,18 @@ public class UpdateServlet extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String id=request.getParameter("id");
+		
+		String name=request.getParameter("name");
 		String password=request.getParameter("password");
-		int id1=Integer.parseInt(id);
-		demo.setId(id1);
+		String phoneNo=request.getParameter("phoneNo");
+		String  email=request.getParameter("emailId");
+		int id=Integer.parseInt(request.getParameter("id"));
+		long phoneNumber=Long.parseLong(phoneNo);
+		demo.setId(id);
+		demo.setName(name);
 		demo.setPassword(password);
+		demo.setEmail(email);
+		demo.setPhoneNo(phoneNumber);
 		try 
 		{
 			demoImpl.updateDetails(demo);
@@ -40,7 +47,18 @@ public class UpdateServlet extends HttpServlet
 		{
 			e.printStackTrace();
 		}
-		servlet.displayDetails(request, response);
+//		servlet.displayDetails(request, response);
+		try 
+		{
+			list=demoImpl.retriveDetails();
+		}
+		catch (ClassNotFoundException | SQLException e)
+		{
+			e.printStackTrace();
+		}
+		request.setAttribute("list", list);
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("demotable.jsp");
+		requestDispatcher.forward(request, response);
 	}
 //	protected void displayDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 //	{

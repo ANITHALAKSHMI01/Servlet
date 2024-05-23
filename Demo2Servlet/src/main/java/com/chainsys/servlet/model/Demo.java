@@ -10,8 +10,9 @@ public class Demo
 	{
 		
 	}
-	public Demo(String name,String email,long phoneNo)
+	public Demo(int id,String name,String email,long phoneNo)
 	{
+		this.id=id;
 		this.name=name;
 		this.email=email;
 		this.phoneNo=phoneNo;

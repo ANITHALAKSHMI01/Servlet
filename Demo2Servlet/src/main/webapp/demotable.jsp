@@ -13,6 +13,7 @@
 h1
 {
   text-align:center;
+  color:orange;
 }
 #main
 {
@@ -22,19 +23,45 @@ h1
  table
  {
  	border-spacing:0;
+ 	border-color:white;
  }
- th,td,button
+ th
+ {
+ 	background-color:blue;
+ 	color:white;
+ 	font-size:22px;
+ }
+ td
+ {
+  font-size:20px;
+ }
+ th,td,button,.button
  {
  padding:10px;
  }
- button
+ .but
  {
   width:100px;
+  border-radius:20px;
+  font-size:20px;
   position:relative;
   top:50px;
-  left:450px;
+  left:500px;
+  background-color:blue;
+  opacity:0.7px;
+  border-color:white;
+  color:white;
  }
-
+ .but1,.button
+ {
+  width:100px;
+  border-radius:20px;
+  font-size:20px;
+  background-color:blue;
+  opacity:0.7px;
+  border-color:white;
+  color:white;
+ }
 </style>
 <body>
 <h1>Demo Table</h1>
@@ -46,6 +73,8 @@ h1
 	 <th>Name</th>
 	 <th>Email Id</th>
 	 <th>Phone Number</th>
+	 <th>Delete</th>
+	 <th>Update</th>
 	   </tr>
 	</thead>
 	<tbody>
@@ -58,6 +87,15 @@ h1
 	   <td><%=demo.getName()%></td>
 	    <td><%=demo.getEmail() %></td>
 	     <td><%=demo.getPhoneNo() %></td>
+	     <td>
+               <form action="Servlet1" method="post">
+                     <input type="hidden" name="deleteId" value="<%=demo.getId()%>">
+                     <input type="submit" name="delete" value="Delete" class="button">
+                </form>
+          </td> 
+	     <td>  <input type="hidden" name="id" value="<%= demo.getId() %>">
+	          <a href="update.jsp?editId=<%=demo.getId()%>"><button class="but1">Update</button></a>
+	     </td>
 	  </tr>
 	   <%
            }
@@ -65,10 +103,9 @@ h1
 	</tbody>
 </table><br>
 </div>
-<div class="but">
-<a href="delete.jsp"><button>Delete</button></a>
-<a href="demo.jsp"><button>Add</button></a>
-<a href="update.jsp"><button>Update</button></a>
+<div>
+<a href="demo.jsp"><button class="but">Add</button></a>
+<a href="search.jsp"><button class="but">Search</button></a>
 </div>
 </body>
 </html>

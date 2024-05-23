@@ -24,22 +24,33 @@ public class DeleteServlet extends HttpServlet
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String id=request.getParameter("id");
-		int id1=Integer.parseInt(id);
-		demo.setId(id1);
-		try 
+		String delete = request.getParameter("delete");
+      if(delete != null && delete.equals("Delete"))
+      {
+      	int id=Integer.parseInt(request.getParameter("deleteId"));
+      	demo.setId(id);
+      	try 
+      	{
+				demoImpl.deleteDetails(demo);
+			} 
+      	catch (ClassNotFoundException | SQLException e) 
+      	{
+				e.printStackTrace();
+		}
+      	try 
 		{
-			demoImpl.deleteDetails(demo);
-			System.out.println("Deleted Successfully");
-		} 
+			list=demoImpl.retriveDetails();
+		}
 		catch (ClassNotFoundException | SQLException e)
 		{
 			e.printStackTrace();
 		}
-		servlet.displayDetails(request, response);
+		request.setAttribute("list", list);
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("demotable.jsp");
+		requestDispatcher.forward(request, response);
+      }
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	protected void deleteDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		doGet(request, response);
 	}

@@ -7,8 +7,7 @@ public interface DemoDAO
 {
 	void saveDetails(Demo demo) throws ClassNotFoundException, SQLException;
 	List<Demo> retriveDetails() throws ClassNotFoundException, SQLException;
-//	void deleteDetails() throws ClassNotFoundException, SQLException;
-//	void updateDetails() throws ClassNotFoundException, SQLException;
 	void deleteDetails(Demo demo) throws ClassNotFoundException, SQLException;
 	void updateDetails(Demo demo) throws ClassNotFoundException, SQLException;
+	List<Demo> search(Demo demo) throws ClassNotFoundException, SQLException;
 }
