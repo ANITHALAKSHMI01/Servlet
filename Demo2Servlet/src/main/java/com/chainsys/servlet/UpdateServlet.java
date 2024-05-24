@@ -47,7 +47,6 @@ public class UpdateServlet extends HttpServlet
 		{
 			e.printStackTrace();
 		}
-//		servlet.displayDetails(request, response);
 		try 
 		{
 			list=demoImpl.retriveDetails();
@@ -60,25 +59,8 @@ public class UpdateServlet extends HttpServlet
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("demotable.jsp");
 		requestDispatcher.forward(request, response);
 	}
-//	protected void displayDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-//	{
-//		try 
-//		{
-//			list=demoImpl.retriveDetails();
-//			System.out.println(list);
-//			System.out.println("Displayed successfully..");
-//		} 
-//		catch (ClassNotFoundException | SQLException e)
-//		{
-//			e.printStackTrace();
-//		}
-//		request.setAttribute("list", list);
-//		 RequestDispatcher requestDispatcher=request.getRequestDispatcher("demotable.jsp");
-//		 requestDispatcher.forward(request, response);
-//	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		doGet(request, response);
-//		displayDetails(request, response);
 	}
 }

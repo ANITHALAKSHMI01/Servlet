@@ -1,7 +1,6 @@
 package com.chainsys.servlet.dao;
 import java.sql.SQLException;
 import java.util.List;
-
 import com.chainsys.servlet.model.Demo;
 public interface DemoDAO 
 {
