@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Display Table</title>
 </head>
 <style>
@@ -46,13 +47,13 @@ h1
   font-size:20px;
   position:relative;
   top:50px;
-  left:500px;
+  left:550px;
   background-color:blue;
   opacity:0.7px;
   border-color:white;
   color:white;
  }
- .but1,.button
+ .but1,.button, .but2
  {
   width:100px;
   border-radius:20px;
@@ -62,15 +63,44 @@ h1
   border-color:white;
   color:white;
  }
+#icon
+ {
+  color:white;
+ }
+ #icon1
+ {
+ 	position:relative;
+ 	left:750px;
+ 	bottom:50px;
+ }
+ .search
+ {
+ 	position:relative;
+ 	left:750px;
+ 	bottom:50px;
+ }
+ .but2
+ {
+   position:relative;
+   left:750px;
+   bottom:50px;
+   padding:5px;
+ }
 </style>
 <body>
 <h1>Demo Table</h1>
+<form action="SearchServlet" method="get">
+   <i class="fa-solid fa-magnifying-glass" id="icon1"></i>
+	<input type="text" name="name" class="search" required>
+	<!-- <input type="submit" class="but2" name="search"> -->
+</form>
 <div id="main">
 <table border="2px">
 	<thead>
 		<tr>
 	<th>Id</th>
 	 <th>Name</th>
+	 <th>Date Of Birth <a href="filter.jsp"><i class="fa-solid fa-sort" id="icon"></i></a></th>
 	 <th>Email Id</th>
 	 <th>Phone Number</th>
 	 <th>Delete</th>
@@ -85,6 +115,7 @@ h1
 	  <tr>
 	  <td> <%=demo.getId()%></td>
 	   <td><%=demo.getName()%></td>
+	   <td><%=demo.getDateOfBirth() %></td>
 	    <td><%=demo.getEmail() %></td>
 	     <td><%=demo.getPhoneNo() %></td>
 	     <td>
@@ -105,7 +136,9 @@ h1
 </div>
 <div>
 <a href="demo.jsp"><button class="but">Add</button></a>
-<a href="search.jsp"><button class="but">Search</button></a>
+<a href="./LogoutServlet"><button class="but">Logout</button></a>
+<!-- <a href="search.jsp"><button class="but">Search</button></a> -->
+<!-- <a href="filter.jsp"><button class="but">Filter</button></a> -->
 </div>
 </body>
 </html>

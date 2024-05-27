@@ -9,4 +9,5 @@ public interface DemoDAO
 	void deleteDetails(Demo demo) throws ClassNotFoundException, SQLException;
 	void updateDetails(Demo demo) throws ClassNotFoundException, SQLException;
 	List<Demo> search(Demo demo) throws ClassNotFoundException, SQLException;
+	List<Demo> filter(String fromDate,String toDate) throws ClassNotFoundException, SQLException;
 }

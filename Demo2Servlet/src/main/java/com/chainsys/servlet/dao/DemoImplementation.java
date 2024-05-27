@@ -14,12 +14,13 @@ public class DemoImplementation implements DemoDAO
 	public void saveDetails(Demo demo) throws ClassNotFoundException, SQLException 
 	{
 		Connection connection=ConnectionUtil.getConnection();
-		String addDetails="insert into demo(name,email,phone_no,password)values(?,?,?,?)";
+		String addDetails="insert into demo(name,date_of_birth,email,phone_no,password)values(?,?,?,?,?)";
 		PreparedStatement prepareStatement=connection.prepareStatement(addDetails);
 		prepareStatement.setString(1,demo.getName());
-		prepareStatement.setString(2, demo.getEmail());
-		prepareStatement.setLong(3, demo.getPhoneNo());
-		prepareStatement.setString(4, demo.getPassword());
+		prepareStatement.setString(2,demo.getDateOfBirth());
+		prepareStatement.setString(3, demo.getEmail());
+		prepareStatement.setLong(4, demo.getPhoneNo());
+		prepareStatement.setString(5, demo.getPassword());
 		prepareStatement.executeUpdate();
 		connection.close();
 	}
@@ -28,20 +29,22 @@ public class DemoImplementation implements DemoDAO
 	{
 		ArrayList<Demo> list=new ArrayList<>();
 		Connection connection=ConnectionUtil.getConnection();
-		String select="select id,name,email,phone_no from demo";
+		String select="select id,name,date_of_birth,email,phone_no from demo";
 		PreparedStatement prepareStatement=connection.prepareStatement(select);
 		ResultSet resultSet=prepareStatement.executeQuery();
 		while(resultSet.next())
 		{
 			String id=resultSet.getString(1);
 			String name=resultSet.getString(2);
-			String email=resultSet.getString(3);
-			String phoneNo=resultSet.getString(4);
+			String dateOfBirth=resultSet.getString(3);
+			String email=resultSet.getString(4);
+			String phoneNo=resultSet.getString(5);
 			int id1=Integer.parseInt(id);
 			long phoneNumber=Long.parseLong(phoneNo);
 			Demo demo=new Demo();
 			demo.setId(id1);
 			demo.setName(name);
+			demo.setDateOfBirth(dateOfBirth);
 			demo.setEmail(email);
 			demo.setPhoneNo(phoneNumber);
 			list.add(demo);
@@ -78,7 +81,7 @@ public class DemoImplementation implements DemoDAO
 	{
 		ArrayList<Demo> list=new ArrayList<>();
 		Connection connection=ConnectionUtil.getConnection();
-		String search="select id,name,email,phone_no from demo where name=?";
+		String search="select id,name,date_of_birth,email,phone_no from demo where name=?";
 		PreparedStatement prepareStatement=connection.prepareStatement(search);
 		prepareStatement.setString(1,demo.getName());
 		ResultSet resultSet=prepareStatement.executeQuery();
@@ -86,18 +89,38 @@ public class DemoImplementation implements DemoDAO
 		{
 			String id=resultSet.getString(1);
 			String name=resultSet.getString(2);
-			String email=resultSet.getString(3);
-			String phoneNo=resultSet.getString(4);
+			String dateOfBirth=resultSet.getString(3);
+			String email=resultSet.getString(4);
+			String phoneNo=resultSet.getString(5);
 			int id1=Integer.parseInt(id);
 			long phoneNumber=Long.parseLong(phoneNo);
-			demo.setId(id1);
-			demo.setName(name);
-			demo.setEmail(email);
-			demo.setPhoneNo(phoneNumber);
-			Demo demo1=new Demo(id1,name,email,phoneNumber);
+			Demo demo1=new Demo(id1,name,dateOfBirth,email,phoneNumber);
 			list.add(demo1);
 		}
 		return list;
 	}
-
+	@Override
+	public List<Demo> filter(String fromDate,String toDate) throws ClassNotFoundException, SQLException
+	{
+		ArrayList<Demo> filterRecords=new ArrayList<>(); 
+		Connection connection=ConnectionUtil.getConnection();
+		String search="select id,name,date_of_birth,email,phone_no from demo where date_of_birth between ? and ?";
+		PreparedStatement prepareStatement=connection.prepareStatement(search);
+		prepareStatement.setString(1,fromDate);
+		prepareStatement.setString(2,toDate);
+		ResultSet resultSet=prepareStatement.executeQuery();
+		while(resultSet.next())
+		{
+			String id=resultSet.getString(1);
+			String name=resultSet.getString(2);
+			String dateOfBirth=resultSet.getString(3);
+			String email=resultSet.getString(4);
+			String phoneNo=resultSet.getString(5);
+			int id1=Integer.parseInt(id);
+			long phoneNumber=Long.parseLong(phoneNo);
+			Demo demo1=new Demo(id1,name,dateOfBirth,email,phoneNumber);
+			filterRecords.add(demo1);
+		}
+		return filterRecords;
+	}
 }

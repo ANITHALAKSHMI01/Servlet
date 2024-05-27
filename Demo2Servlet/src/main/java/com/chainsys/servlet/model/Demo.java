@@ -3,6 +3,7 @@ public class Demo
 {
 	int id;
 	String name;
+	String dateOfBirth;
 	String email;
 	long phoneNo;
 	String password;
@@ -10,10 +11,11 @@ public class Demo
 	{
 		
 	}
-	public Demo(int id,String name,String email,long phoneNo)
+	public Demo(int id,String name,String dateOfBirth,String email,long phoneNo)
 	{
 		this.id=id;
 		this.name=name;
+		this.dateOfBirth=dateOfBirth;
 		this.email=email;
 		this.phoneNo=phoneNo;
 	}
@@ -32,6 +34,14 @@ public class Demo
 	public void setName(String name) 
 	{
 		this.name = name;
+	}
+	public String getDateOfBirth()
+	{
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(String dateOfBirth)
+	{
+		this.dateOfBirth = dateOfBirth;
 	}
 	public String getEmail()
 	{
@@ -60,7 +70,7 @@ public class Demo
 	@Override
 	public String toString()
 	{
-		return "Demo [id=" + id + ", name=" + name + ", email=" + email + ", phoneNo=" + phoneNo + ", password="
-				+ password + "]";
+		return "Demo [id=" + id + ", name=" + name + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", phoneNo="
+				+ phoneNo + ", password=" + password + "]";
 	}
 }

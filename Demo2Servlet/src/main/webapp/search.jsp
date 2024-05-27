@@ -47,7 +47,7 @@ border-color:white;
 <body>
 <h1>Details</h1>
 <div>
-<form action="SearchServlet" method="post">
+<form action="SearchServlet" method="get">
 	Enter name:<input type="text" name="name" required><br><br>
 	<input type="submit" class="but" name="search">
 </form>

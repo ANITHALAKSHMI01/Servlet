@@ -47,13 +47,14 @@ div
 </style>
 </head>
 <body>
-	<h1>Registration Form</h1>
+	<h1>Add User</h1>
 	<div>
 	<form action="Servlet1" method="get">
-		 Name          : <input type="text" name="name"><br><br>
-		 Phone Number  : <input type="tel" name="phoneNo" maxlength=10><br><br>
-		 Email Id      : <input type="email" name="emailId" required><br><br>
-		 Password      : <input type="password" name="password" maxlength=6 required><br><br>
+		 Name          : <input type="text" name="name" placeholder="Name"><br><br>
+		 Date Of Birth :<input type="date" name="dateOfBirth" max="2010-07-31" min="2001-01-01" placeholder="DOB"><br><br>
+		 Phone Number  : <input type="tel" name="phoneNo" maxlength=10 placeholder="Phone Number"><br><br>
+		 Email Id      : <input type="email" name="emailId" required placeholder="Email Id"><br><br>
+		 Password      : <input type="password" name="password" maxlength=6 required placeholder="Password"><br><br>
 		 <input class="but" type="submit" name="submit">
 	</form>
 	</div>

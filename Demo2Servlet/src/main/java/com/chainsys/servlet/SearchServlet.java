@@ -15,7 +15,6 @@ import com.chainsys.servlet.model.Demo;
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static List list;
 	public static Demo demo=new Demo();
 	public static DemoImplementation demoImpl=new DemoImplementation();
     public SearchServlet()
@@ -24,6 +23,7 @@ public class SearchServlet extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		List list=null;
 		String name=request.getParameter("name");
 		demo.setName(name);
 		try 
@@ -36,11 +36,30 @@ public class SearchServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("list", list);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("demotable.jsp");
-		requestDispatcher.forward(request, response);
+		request.getRequestDispatcher("demotable.jsp").forward(request, response);
+//		RequestDispatcher requestDispatcher=request.getRequestDispatcher("demotable.jsp");
+//		requestDispatcher.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		doGet(request, response);
+		 List filter = null;
+		String fromDate=request.getParameter("fromDate");
+		String toDate=request.getParameter("toDate");
+		System.out.println(fromDate);
+		System.out.println(toDate);
+		try 
+		{
+			filter=demoImpl.filter(fromDate,toDate);
+			System.out.println(filter);
+			System.out.println("Filter Done..");
+		} 
+		catch (ClassNotFoundException | SQLException e)
+		{
+			e.printStackTrace();
+		}
+		request.setAttribute("list", filter);
+		request.getRequestDispatcher("demotable.jsp").forward(request, response);
+//		RequestDispatcher requestDispatcher=request.getRequestDispatcher("demotable.jsp");
+//		requestDispatcher.forward(request, response);
 	}
 }
